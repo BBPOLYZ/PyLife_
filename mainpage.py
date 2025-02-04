@@ -88,7 +88,7 @@ elif home_option == "Glossary":
 elif home_option == "Factors Influencing Time-to-Failure of Water Pipelines":
     st.title("Factors Influencing Time-to-Failure of Water Pipelines")
     st.write("This section provides an explanation of the data used in the project...")
-    st.image("C:/Users/21071252r/Desktop/Data Science Course/pylifewaterapp/Picture5.png", caption="Factors affecting Time-to-Failure of water pipelines")
+    st.image("Picture5.png", caption="Factors affecting Time-to-Failure of water pipelines")
 
 # Footer
 st.markdown("""
