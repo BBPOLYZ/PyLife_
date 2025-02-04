@@ -1,10 +1,7 @@
-import os
+import numpy as np
+import pandas as pd
 import pickle
 import streamlit as st
-import numpy as np
-from tensorflow.keras.models import load_model
-from datetime import datetime
-import matplotlib.pyplot as plt
 
 st.header("Sequential Leak Prediction")
 
@@ -15,50 +12,49 @@ def load_models(model_path):
         return pickle.load(file)
 
 # Load all models
-model = load_models('ttnf_tabnet_fw.pkl')
-model['ttnf']
+model_path = 'D:/OneDrive - The Hong Kong Polytechnic University/PhD Database/CleanData/pickelfiles_ml/RandomForest_ClimateIndex/ttnf_rf_fw1.pkl'
+models = load_models(model_path)
+model = models['ttnf']
 
 # Define a function for prediction
-def predict(spatial_data, temporal_data):
-    spatial_data = np.array(spatial_data).reshape(1, -1, 2)
-    temporal_data = np.array(temporal_data).reshape(1, -1, len(temporal_data[0]))
-    prediction = model.predict([spatial_data, temporal_data])
-    return prediction[0][0]
+def predict(features):
+    features = np.array(features).reshape(1, -1)
+    prediction = model.predict(features)
+    return prediction[0]
 
 # Streamlit app layout
-st.title('Single Point Prediction')
+st.title('Batch Prediction from CSV')
 
-# User input for spatial data
-st.subheader('Spatial Data')
-lat = st.number_input('Latitude', min_value=22.15, max_value=22.65, value=22.30)
-lon = st.number_input('Longitude', min_value=113.80, max_value=114.40, value=114.00)
-spatial_data = [[lat, lon]]
+# File uploader
+uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
 
-# User input for temporal data
-st.subheader('Temporal Data')
-doi = st.date_input('Installation Date (DOI)', value=datetime(2000, 1, 1).date())
-timestamp = st.date_input('Failure Date', value=datetime(2023, 1, 1).date())
-nopf = st.selectbox('Number of Previous Failures (NOPF)', options=[0, 1, 2])
-time_prev_failure = st.number_input('Time of Previous Failure (Yrs.)', min_value=0.0, value=0.0)
-
-# Convert dates to numerical format (e.g., timestamp)
-doi_datetime = datetime.combine(doi, datetime.min.time())
-failure_datetime = datetime.combine(timestamp, datetime.min.time())
-doi_timestamp = doi_datetime.timestamp()
-failure_timestamp = failure_datetime.timestamp()
-
-# Automatically set time_prev_failure to 0 if nopf is 0
-if nopf == 0:
-    time_prev_failure = 0.0
-
-temporal_data = [[doi_timestamp, failure_timestamp, nopf, time_prev_failure]]
-
-# Prediction button
-if st.button('Predict'):
-    # Ensure time_prev_failure is set to 0 if nopf is 0
-    if nopf == 0:
-        time_prev_failure = 0.0
-        temporal_data = [[doi_timestamp, failure_timestamp, nopf, time_prev_failure]]
+if uploaded_file is not None:
+    # Read the CSV file
+    data = pd.read_csv(uploaded_file)
     
-    result = predict(spatial_data, temporal_data)
-    st.write(f'Prediction: {result}')
+    # Display the data
+    st.write("Data Preview:")
+    st.write(data.head())
+    
+    # Ensure the required columns are present
+    required_columns = ['Year of Installation', 'NOPF', 'APF', 'Length', 'Pressure',
+                        'FAULT_TYPE', 'A_DIAM', 'Material', 'Urbanization', 'Soil Corrosivity',
+                        'Latitude', 'Longitude', 'Effect of Traffic Load']
+    
+    if all(column in data.columns for column in required_columns):
+        # Extract features
+        features = data[required_columns]
+        
+        # Make predictions
+        predictions = features.apply(lambda row: predict(row), axis=1)
+        
+        # Add predictions to the DataFrame
+        data['Prediction'] = predictions
+        
+        # Display the predictions
+        st.write("Predictions:")
+        st.write(data)
+    else:
+        st.error(f"Expected {len(required_columns)} features, but got {features.shape[1]}. Please check the input data.")
+else:
+    st.error("The uploaded CSV file does not contain all the required columns.")
