@@ -36,7 +36,7 @@ st.title('Failure Rate and Time-to-Failure Trends in Hong Kong')
 
 # Sidebar for user inputs
 st.sidebar.header('Select Variables')
-file_path = st.sidebar.text_input('Enter the file path of your data:', 'BURSTS_FW_CT_1.xlsx')
+file_path = st.sidebar.text_input('Enter the file path of your data:', 'D:/path/to/your/file.xlsx')
 
 if file_path:
     data = load_data(file_path)
