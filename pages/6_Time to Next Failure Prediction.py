@@ -12,7 +12,7 @@ def load_models(model_path):
         return pickle.load(file)
 
 # Load all models
-model_path = 'D:/OneDrive - The Hong Kong Polytechnic University/PhD Database/CleanData/pickelfiles_ml/RandomForest_ClimateIndex/ttnf_rf_fw1.pkl'
+model_path = 'ttnf_rf_fw1.pkl'
 models = load_models(model_path)
 model = models['ttnf']
 
