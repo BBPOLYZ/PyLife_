@@ -75,7 +75,7 @@ elif home_option == "Objectives":
     3. Prediction of 1st, 2nd and 3rd Failure
     4. Prediction of Time-to-Next Failure
     """)
-    # st.image("C:/Users/21071252r/Desktop/Data Science Course/pylifewaterapp/Picture3.jpeg", caption="Hong Kong Water Pipeline Burst")
+    # st.image("Picture3.jpeg", caption="Hong Kong Water Pipeline Burst")
 
 elif home_option == "Glossary":
     st.title("Glossary")
