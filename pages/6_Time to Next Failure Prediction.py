@@ -15,7 +15,7 @@ st.header("Sequential Leak Prediction")
 # Display the menu
 #navbar.nav('Sequential Leak Prediction')
 
-model_path = 'ttnf_tabnet_fw'
+model_path = 'ttnf_tabnet_fw.pkl'
 model = load_model(model_path)
 
 # Define a function for prediction
