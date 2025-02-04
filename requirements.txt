@@ -4,3 +4,4 @@ numpy
 streamlit-option-menu
 matplotlib
 seaborn
+lifelines
