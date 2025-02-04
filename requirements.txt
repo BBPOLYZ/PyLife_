@@ -10,3 +10,4 @@ statsmodels
 scikit-survival
 tensorflow
 keras
+plotly
