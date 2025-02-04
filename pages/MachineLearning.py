@@ -16,7 +16,7 @@ def load_models(model_path):
         return pickle.load(file)
 
 # Load all models
-models = load_models('D:/OneDrive - The Hong Kong Polytechnic University/PhD Database/CleanData/pickelfiles_ml/RandomForest_ClimateIndex/FW_DI.pkl')
+models = load_models('FW_123.pkl')
 model_first_failure = models['model_first_failure']
 model_second_failure = models['model_second_failure']
 model_third_failure = models['model_third_failure']
