@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[3]:
 import os
-#import navbar
+import pickle
 import streamlit as st
 import numpy as np
 from tensorflow.keras.models import load_model
@@ -36,13 +35,6 @@ st.subheader('Spatial Data')
 lat = st.number_input('Latitude', min_value=22.15, max_value=22.65, value=22.30)
 lon = st.number_input('Longitude', min_value=113.80, max_value=114.40, value=114.00)
 spatial_data = [[lat, lon]]
-    
-# Define a function for prediction
-def predict(spatial_data, temporal_data):
-    spatial_data = np.array(spatial_data).reshape(1, -1, 2)
-    temporal_data = np.array(temporal_data).reshape(1, -1, len(temporal_data[0]))
-    prediction = model.predict([spatial_data, temporal_data])
-    return prediction[0][0]
 
 # User input for temporal data
 st.subheader('Temporal Data')
