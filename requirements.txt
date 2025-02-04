@@ -11,3 +11,4 @@ scikit-survival
 tensorflow
 keras
 plotly
+openpyxl
