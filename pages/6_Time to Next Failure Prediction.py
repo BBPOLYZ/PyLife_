@@ -16,6 +16,7 @@ def load_models(model_path):
 
 # Load all models
 model = load_models('ttnf_tabnet_fw.pkl')
+model['ttnf']
 
 # Define a function for prediction
 def predict(spatial_data, temporal_data):
