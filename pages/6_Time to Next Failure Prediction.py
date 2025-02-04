@@ -12,11 +12,14 @@ import matplotlib.pyplot as plt
 
 st.header("Sequential Leak Prediction")
 
-# Display the menu
-#navbar.nav('Sequential Leak Prediction')
+# Function to load the models
+@st.cache_resource
+def load_models(model_path):
+    with open(model_path, 'rb') as file:
+        return pickle.load(file)
 
-model_path = 'ttnf_tabnet_fw.pkl'
-model = load_model(model_path)
+# Load all models
+model = load_models('ttnf_tabnet_fw.pkl')
 
 # Define a function for prediction
 def predict(spatial_data, temporal_data):
