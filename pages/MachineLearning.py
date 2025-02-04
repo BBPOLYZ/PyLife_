@@ -29,13 +29,13 @@ tab1, tab2, tab3 = st.tabs(["Time to First Failure", "Time to Second Failure", "
 
 # Features for each model
 numerical_features_model1 = ['Year of Installation', 'SA', 'PRESSURE(bar)', 'AADT','MWI_1']
-categorical_features_model1 = ['A_MAT', 'LANDUSE', 'TYPE', 'LPR_Corros', 'DEFECT1LV1', 'DEF_NATURE']
+categorical_features_model1 = ['A_MAT', 'LANDUSE', 'TYPE', 'LPR_Corros']
 
 numerical_features_model2 = ['Year of Installation', 'Age at 1st Failure', 'SA', 'PRESSURE(bar)', 'AADT','MWI_1']
-categorical_features_model2 = ['A_MAT', 'LANDUSE', 'TYPE', 'LPR_Corros', 'DEFECT1LV1', 'DEF_NATURE']
+categorical_features_model2 = ['A_MAT', 'LANDUSE', 'TYPE', 'LPR_Corros']
 
 numerical_features_model3 = ['Age at 1st Failure', 'Age at 2nd Failure', 'SA', 'PRESSURE(bar)', 'AADT','MWI_1']
-categorical_features_model3 = ['A_MAT', 'LANDUSE', 'TYPE', 'LPR_Corros', 'DEFECT1LV1', 'DEF_NATURE']
+categorical_features_model3 = ['A_MAT', 'LANDUSE', 'TYPE', 'LPR_Corros']
 
 def input_form(numerical_features, categorical_features, key_prefix):
     inputs = {}
