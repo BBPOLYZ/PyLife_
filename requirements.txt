@@ -7,3 +7,4 @@ seaborn
 lifelines
 scikit-learn
 statsmodels
+scikit-survival
