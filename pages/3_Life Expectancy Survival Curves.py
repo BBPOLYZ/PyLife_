@@ -22,7 +22,7 @@ def load_data(file_path):
 st.title('Kaplan-Meier Curves and Survival Regression for Water Pipeline Types')
 
 # Input for file path
-file_path = st.text_input('Enter the file path of your data:', 'C:/Users/21071252r/Desktop/Data Science Course/pylifewaterapp/Survival.csv')
+file_path = st.text_input('Enter the file path of your data:', 'Survival.csv')
 
 if file_path:
     data = load_data(file_path)
