@@ -64,7 +64,7 @@ if home_option == "Introduction to the project":
     st.write("""
 Hong Kong has around 8,300 km of potable and saltwater pipes, many over 30 years old and costly to maintain. In 2019, there were 7,113 pipe bursts/leaks, showing improvement in the Hong Kong Water Distribution Network (HKWDN) compared to 20 years ago. This web application predicts time-to-failure for water pipelines using statistical, machine learning, and integrated approaches. It helps monitor and improve pipeline performance, ensuring efficient and cost-effective maintenance. Key users include WSD, municipal workforces, academics, contractors, and other stakeholders. The research aims to advance municipal practices, enhance decision-making, increase pipeline safety and functionality, reduce water loss, and mitigate catastrophic failures.
     """)
-    st.image("C:/Users/21071252r/Desktop/Data Science Course/pylifewaterapp/Picture4.png", caption="Water Pipeline Network")
+    st.image("Picture4.png", caption="Water Pipeline Network")
 
 elif home_option == "Objectives":
     st.title("Objectives")
