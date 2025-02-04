@@ -57,7 +57,7 @@ glossary = {
 }
 
 # Display the menu
-home_option = st.sidebar.radio("Knowledge Module", ["Introduction to the project", "Objectives", "Glossary", "Factors Influencing Time-to-Failure of Water Pipelines"])
+home_option = st.sidebar.radio("Knowledge Hub", ["Introduction to the project", "Objectives", "Glossary", "Factors Influencing Time-to-Failure of Water Pipelines"])
 
 if home_option == "Introduction to the project":
     st.title("Predicting Time-to-Failure of Water Pipelines")
