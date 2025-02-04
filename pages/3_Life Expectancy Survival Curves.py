@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 from lifelines import KaplanMeierFitter
 from sklearn.preprocessing import StandardScaler
 from sklearn.impute import SimpleImputer
-from statsmodels.stats.outliers_influence import variance_inflation_factor
 from sksurv.linear_model import CoxPHSurvivalAnalysis
 from sksurv.util import Surv
 import numpy as np
@@ -70,13 +69,6 @@ if file_path:
             scaler = StandardScaler()
             data[numerical_cols] = scaler.fit_transform(data[numerical_cols])
 
-            # Check for multicollinearity
-            vif_data = pd.DataFrame()
-            vif_data["feature"] = data.columns
-            vif_data["VIF"] = [variance_inflation_factor(data.values, i) for i in range(len(data.columns))]
-            st.write("Variance Inflation Factors:")
-            st.write(vif_data)
-
             # Prepare data for survival analysis
             y = np.array([(event, time) for event, time in zip(data['Status'].astype(bool), data['Duration'])],
                          dtype=[('Status', bool), ('Duration', float)])
@@ -102,21 +94,6 @@ if file_path:
                     data['risk_score'] = cph.predict(X)
                 except Exception as e:
                     st.write(f"Error calculating risk scores: {e}")
-
-                # Plot risk scores
-                try:
-                    plt.figure(figsize=(10, 6))
-                    for pipeline_type in pipeline_types:
-                        subset = data[data[f'A_MAT_{pipeline_type}'] == 1]
-                        plt.scatter(subset['Duration'], subset['risk_score'], label=pipeline_type)
-
-                    plt.title('Risk Scores by Time')
-                    plt.xlabel('Time')
-                    plt.ylabel('Risk Score')
-                    plt.legend()
-                    st.pyplot(plt)
-                except KeyError as e:
-                    st.write(f"KeyError: {e}")
         else:
             st.write('Please select at least one pipeline type.')
     else:
