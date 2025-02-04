@@ -8,3 +8,5 @@ lifelines
 scikit-learn
 statsmodels
 scikit-survival
+tensorflow
+keras
